@@ -4,6 +4,7 @@
 
 const app = document.getElementById("app");
 const pie = document.getElementById("pie");
+const botonInicio = document.getElementById("boton-inicio");
 const PRIMER_CAPITULO = "#/leer/gen/1";
 const CLAVE_ULTIMA = "biblia:ultima";
 const CLAVE_LETRA = "biblia:letra";
@@ -543,6 +544,8 @@ async function navegar() {
   const esLibro = seccion === "libro" && partes.length === 2;
   const esLeer = seccion === "leer" && partes.length === 3;
   const esConocida = esLibros || esLibro || esLeer;
+
+  botonInicio.hidden = !esConocida;
 
   try {
     if (!seccion || !esConocida) {
