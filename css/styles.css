@@ -13,7 +13,7 @@
 :root {
   color-scheme: light;
   --tam-letra: 26px;
-  --fondo: #F0EFF4;
+  --fondo: #F9F0DC;
   --texto: #721121;
   --texto-suave: #8C2F20;
   --fondo-boton: #721121;
@@ -22,12 +22,12 @@
   --fondo-principal: #FFC07F;
   --texto-principal: #721121;
   --borde-principal: #721121;
-  --fondo-deshabilitado: #E3DEE6;
+  --fondo-deshabilitado: #E6DCC6;
   --texto-deshabilitado: #5E4A50;
-  --borde-deshabilitado: #A89AA0;
+  --borde-deshabilitado: #A8997F;
   --color-numero: #8C2F20;
   --color-foco: #A5402D;
-  --borde-suave: #D2C2C8;
+  --borde-suave: #DCCDAE;
   --fondo-encabezado: #A5402D;
   --texto-encabezado: #F0EFF4;
   --borde-encabezado: #F15156;
@@ -44,6 +44,10 @@ html {
 
 /* Letra grande, monoespaciada local y alto contraste. */
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
   background: var(--fondo);
   color: var(--texto);
@@ -74,10 +78,23 @@ button {
 
 /* Área central de cada pantalla. */
 .contenido {
+  flex: 1 0 auto;
   width: 100%;
   max-width: 760px;
   margin: 0 auto;
   padding: 20px;
+}
+
+/* Pie de página: solo contiene el aviso de lectura sin conexión. */
+.pie {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 16px;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+}
+
+.pie:empty {
+  display: none;
 }
 
 h2 {
@@ -114,19 +131,24 @@ h3 {
   gap: 16px;
 }
 
-/* Contenedor del botón "Continuar leyendo" y su línea de destino. */
-.continuar {
-  display: grid;
+/* Botón "Continuar leyendo" con el destino debajo del texto. */
+.boton-continuar {
+  flex-direction: column;
   gap: 6px;
 }
 
-/* Línea chica con el capítulo al que lleva "Continuar leyendo". */
-.destino {
-  margin: 0;
-  color: var(--texto-suave);
+/* Recuadro chico con el capítulo al que lleva "Continuar leyendo". */
+.destino-boton {
+  display: inline-block;
+  padding: 2px 10px;
+  border: 2px solid var(--borde-principal);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--texto-principal);
   font-size: 20px;
   line-height: 1.4;
   text-align: center;
+  overflow-wrap: anywhere;
 }
 
 /* Línea que indica que la aplicación ya está disponible sin conexión. */

@@ -3,6 +3,7 @@
 // Aplicación de lectura de la Biblia, Reina-Valera 1909.
 
 const app = document.getElementById("app");
+const pie = document.getElementById("pie");
 const PRIMER_CAPITULO = "#/leer/gen/1";
 const CLAVE_ULTIMA = "biblia:ultima";
 const CLAVE_LETRA = "biblia:letra";
@@ -290,21 +291,19 @@ async function mostrarInicio(numeroNavegacion) {
   const acciones = document.createElement("div");
   acciones.className = "acciones";
 
-  const continuar = document.createElement("div");
-  continuar.className = "continuar";
+  acciones.appendChild(crearBoton("Elegir libro", "#/libros"));
+
   const botonContinuar = crearBoton("Continuar leyendo", destino);
-  botonContinuar.className = "boton boton-principal";
-  continuar.appendChild(botonContinuar);
+  botonContinuar.className = "boton boton-principal boton-continuar";
 
   if (textoDestino) {
-    const linea = document.createElement("p");
-    linea.className = "destino";
-    linea.textContent = textoDestino;
-    continuar.appendChild(linea);
+    const recuadro = document.createElement("span");
+    recuadro.className = "destino-boton";
+    recuadro.textContent = textoDestino;
+    botonContinuar.appendChild(recuadro);
   }
 
-  acciones.appendChild(continuar);
-  acciones.appendChild(crearBoton("Elegir libro", "#/libros"));
+  acciones.appendChild(botonContinuar);
   app.appendChild(acciones);
 
   if ("caches" in window) {
@@ -319,7 +318,7 @@ async function mostrarInicio(numeroNavegacion) {
         const estado = document.createElement("p");
         estado.className = "estado-offline";
         estado.textContent = "Lista para leer sin internet";
-        app.appendChild(estado);
+        pie.appendChild(estado);
       } catch (error) {
         // Si falla la consulta del caché, no se muestra la línea.
       }
@@ -535,6 +534,7 @@ async function navegar() {
   const numeroNavegacion = navegacionActual;
 
   limpiarPantalla();
+  pie.textContent = "";
 
   const ruta = window.location.hash.replace(/^#\/?/, "");
   const partes = ruta.split("/").filter(Boolean);
