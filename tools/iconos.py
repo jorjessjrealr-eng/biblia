@@ -1,8 +1,8 @@
 import struct
 import zlib
 
-FONDO = (0x1A, 0x3A, 0x5C)
-BLANCO = (255, 255, 255)
+FONDO = (0x76, 0x47, 0x30)
+CRUZ = (0xF6, 0xEE, 0xEA)
 
 
 def crear_png(ruta, ancho, alto, pixeles):
@@ -50,7 +50,7 @@ def crear_cruz(tamano, ancho_cruz, alto_cruz, grosor):
             )
 
             if en_vertical or en_horizontal:
-                pixeles.extend(BLANCO)
+                pixeles.extend(CRUZ)
             else:
                 pixeles.extend(FONDO)
 

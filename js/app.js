@@ -349,7 +349,9 @@ async function mostrarInicio(numeroNavegacion) {
 
 function mostrarLibros() {
   limpiarPantalla();
-  app.appendChild(crearTitulo("Libros"));
+  const tituloLibros = crearTitulo("Libros");
+  tituloLibros.className = "titulo-libros";
+  app.appendChild(tituloLibros);
 
   const antiguoTestamento = libros.filter(function (libro) {
     return libro.testamento === "AT";
