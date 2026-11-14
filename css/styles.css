@@ -318,3 +318,80 @@ button:focus-visible {
   margin: 0;
   font-size: 22px;
 }
+
+/* Campo de búsqueda. */
+#consulta {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 56px;
+  font: inherit;
+  font-size: 22px;
+  padding: 8px 14px;
+  border: 2px solid var(--borde-boton);
+  border-radius: 8px;
+  background: var(--fondo);
+  color: var(--texto);
+}
+
+#consulta:focus,
+#consulta:focus-visible {
+  outline: 4px solid var(--color-foco);
+  outline-offset: 2px;
+}
+
+/* El texto de ejemplo mantiene un contraste alto sobre el fondo del campo. */
+#consulta::placeholder {
+  color: var(--texto-suave);
+  opacity: 1;
+}
+
+/* El botón Buscar del formulario se separa un poco del campo. */
+.formulario-busqueda .boton {
+  margin-top: 12px;
+}
+
+/* Cada resultado es un enlace grande con referencia y texto. */
+.resultado {
+  display: block;
+  padding: 12px 14px;
+  border: 2px solid var(--borde-suave);
+  border-radius: 8px;
+  color: var(--texto);
+  text-decoration: none;
+  margin-bottom: 12px;
+  overflow-wrap: break-word;
+  font-size: 22px;
+}
+
+.resultado:focus,
+.resultado:focus-visible {
+  outline: 4px solid var(--color-foco);
+  outline-offset: 2px;
+}
+
+/* Palabras encontradas dentro de un resultado. */
+mark {
+  background: var(--fondo-principal);
+  color: var(--texto-principal);
+  padding: 0 2px;
+  border-radius: 3px;
+}
+
+/* Versículo al que se llegó desde un resultado o un enlace directo. */
+.versiculo-marcado {
+  background: var(--fondo-principal);
+  color: var(--texto-principal);
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.versiculo-marcado .numero-versiculo {
+  color: var(--texto-principal);
+}
+
+/* Avisos de la pantalla de búsqueda y de la lectura. */
+.aviso {
+  font-size: 20px;
+  color: var(--texto-suave);
+  margin: 12px 0;
+}

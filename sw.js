@@ -1,6 +1,6 @@
 // Cambiá este número cada vez que publiques cambios. Así los celulares
 // detectan una versión nueva y actualizan el contenido guardado.
-const VERSION = "biblia-v5";
+const VERSION = "biblia-v6";
 
 // Al instalar, se guardan todos los archivos necesarios para leer sin internet.
 self.addEventListener("install", function (event) {
@@ -21,6 +21,7 @@ self.addEventListener("install", function (event) {
               "./",
               "index.html",
               "css/styles.css",
+              "js/buscar.js",
               "js/app.js",
               "fonts/AtkinsonHyperlegibleMono-Variable.ttf",
               "manifest.webmanifest",
