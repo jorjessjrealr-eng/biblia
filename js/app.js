@@ -6,7 +6,6 @@ const app = document.getElementById("app");
 const PRIMER_CAPITULO = "#/leer/gen/1";
 const CLAVE_ULTIMA = "biblia:ultima";
 const CLAVE_LETRA = "biblia:letra";
-const CLAVE_TEMA = "biblia:tema";
 const TAMANOS_LETRA = [22, 26, 30, 34, 38, 42];
 const TAMANO_POR_DEFECTO = 1;
 
@@ -17,7 +16,6 @@ let navegacionActual = 0;
 
 // Preferencias de lectura.
 let indiceLetra = TAMANO_POR_DEFECTO;
-let temaActual = "claro";
 
 // --- Almacenamiento local ---
 
@@ -55,10 +53,6 @@ function obtenerIndiceLetraGuardado() {
   }
 
   return indice;
-}
-
-function obtenerTemaGuardado() {
-  return leerAlmacen(CLAVE_TEMA) === "oscuro" ? "oscuro" : "claro";
 }
 
 function obtenerUltimaLecturaGuardada() {
@@ -103,10 +97,6 @@ function aplicarTamanoLetra(indice) {
   );
 }
 
-function aplicarTema(tema) {
-  document.documentElement.setAttribute("data-tema", tema);
-}
-
 function actualizarBotonLetra(boton, deshabilitado) {
   if (!boton) {
     return;
@@ -139,18 +129,6 @@ function cambiarLetra(paso) {
   aplicarTamanoLetra(indiceLetra);
   guardarAlmacen(CLAVE_LETRA, String(indiceLetra));
   actualizarBotonesLetra();
-}
-
-function alternarTema() {
-  temaActual = temaActual === "claro" ? "oscuro" : "claro";
-  aplicarTema(temaActual);
-  guardarAlmacen(CLAVE_TEMA, temaActual);
-
-  const boton = document.querySelector('[data-accion="tema"]');
-
-  if (boton) {
-    boton.textContent = temaActual === "claro" ? "Modo oscuro" : "Modo claro";
-  }
 }
 
 // --- Utilidades de pantalla ---
@@ -314,7 +292,9 @@ async function mostrarInicio(numeroNavegacion) {
 
   const continuar = document.createElement("div");
   continuar.className = "continuar";
-  continuar.appendChild(crearBoton("Continuar leyendo", destino));
+  const botonContinuar = crearBoton("Continuar leyendo", destino);
+  botonContinuar.className = "boton boton-principal";
+  continuar.appendChild(botonContinuar);
 
   if (textoDestino) {
     const linea = document.createElement("p");
@@ -466,11 +446,6 @@ async function mostrarLectura(idLibro, numero, numeroNavegacion) {
       "letra-mas",
       indiceLetra === TAMANOS_LETRA.length - 1
     );
-    const botonTema = crearBotonAjuste(
-      temaActual === "claro" ? "Modo oscuro" : "Modo claro",
-      "tema",
-      false
-    );
 
     botonMenos.addEventListener("click", function () {
       cambiarLetra(-1);
@@ -480,11 +455,8 @@ async function mostrarLectura(idLibro, numero, numeroNavegacion) {
       cambiarLetra(1);
     });
 
-    botonTema.addEventListener("click", alternarTema);
-
     ajustes.appendChild(botonMenos);
     ajustes.appendChild(botonMas);
-    ajustes.appendChild(botonTema);
     app.appendChild(ajustes);
 
     const lista = document.createElement("ol");
@@ -610,9 +582,7 @@ async function navegar() {
 
 // Aplicar preferencias antes de mostrar la primera pantalla.
 indiceLetra = obtenerIndiceLetraGuardado();
-temaActual = obtenerTemaGuardado();
 aplicarTamanoLetra(indiceLetra);
-aplicarTema(temaActual);
 
 window.addEventListener("hashchange", navegar);
 navegar();

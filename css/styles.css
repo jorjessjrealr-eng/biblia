@@ -9,36 +9,28 @@
   font-display: swap;
 }
 
-/* Colores de los temas y tamaño de letra de los versículos. */
+/* Colores y tamaño de letra de los versículos. */
 :root {
+  color-scheme: light;
   --tam-letra: 26px;
-  --fondo: #F6EEEA;
-  --texto: #282125;
-  --texto-suave: #6B3F2A;
-  --fondo-boton: #764730;
-  --texto-boton: #FFFFFF;
-  --borde-boton: #282125;
-  --fondo-deshabilitado: #E4D6D0;
-  --texto-deshabilitado: #5A4B47;
-  --borde-deshabilitado: #AA8880;
-  --color-numero: #6B3F2A;
-  --color-foco: #282125;
-  --borde-suave: #AA8880;
-}
-
-html[data-tema="oscuro"] {
-  --fondo: #282125;
-  --texto: #F3E9E4;
-  --texto-suave: #D9BFB8;
-  --fondo-boton: #764730;
-  --texto-boton: #FFFFFF;
-  --borde-boton: #D9BFB8;
-  --fondo-deshabilitado: #3A3034;
-  --texto-deshabilitado: #CDB5AE;
-  --borde-deshabilitado: #8A7771;
-  --color-numero: #D9BFB8;
-  --color-foco: #F6EEEA;
-  --borde-suave: #5C4A4F;
+  --fondo: #F0EFF4;
+  --texto: #721121;
+  --texto-suave: #8C2F20;
+  --fondo-boton: #721121;
+  --texto-boton: #F0EFF4;
+  --borde-boton: #721121;
+  --fondo-principal: #FFC07F;
+  --texto-principal: #721121;
+  --borde-principal: #721121;
+  --fondo-deshabilitado: #E3DEE6;
+  --texto-deshabilitado: #5E4A50;
+  --borde-deshabilitado: #A89AA0;
+  --color-numero: #8C2F20;
+  --color-foco: #A5402D;
+  --borde-suave: #D2C2C8;
+  --fondo-encabezado: #A5402D;
+  --texto-encabezado: #F0EFF4;
+  --borde-encabezado: #F15156;
 }
 
 /* Modelo de caja predecible en todos los elementos. */
@@ -68,9 +60,9 @@ button {
 /* Encabezado de la aplicación. */
 .encabezado {
   padding: 14px 20px;
-  border-bottom: 3px solid var(--texto);
-  background: #AA8880;
-  color: #282125;
+  border-bottom: 3px solid var(--borde-encabezado);
+  background: var(--fondo-encabezado);
+  color: var(--texto-encabezado);
 }
 
 .encabezado h1 {
@@ -172,8 +164,17 @@ h3 {
   cursor: pointer;
 }
 
+.boton.boton-principal {
+  background: var(--fondo-principal);
+  color: var(--texto-principal);
+  border-color: var(--borde-principal);
+}
+
 /* Foco bien visible para la navegación con teclado. */
-.boton:focus {
+a:focus,
+a:focus-visible,
+button:focus,
+button:focus-visible {
   outline: 4px solid var(--color-foco);
   outline-offset: 2px;
 }
